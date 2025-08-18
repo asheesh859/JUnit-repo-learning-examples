@@ -17,5 +17,13 @@ public class CalculatorTest {
 		Assertions.assertEquals(ExpectedValue , ActualValue);
 		
 	}
+	
+	@Test
+	public void testMul() {
+		int ExpectedValue = 50;
+		Calculator c = new Calculator();
+		int ActualReslt = c.mul(10,5);
+		Assertions.assertEquals(ExpectedValue ,ActualReslt);
+		}
 
 }
