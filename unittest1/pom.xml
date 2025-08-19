@@ -56,7 +56,7 @@
 	<version>0.8.11</version>
 	<configuration>
 		<excludes>
-		<exclude>com/app/Unit**</exclude>
+		<exclude>com/unittest1/Unit**</exclude>
 		</excludes>
 	</configuration>
 	<executions>
