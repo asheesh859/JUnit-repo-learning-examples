@@ -12,7 +12,7 @@ public class UserService {
 	public UserService(UserRepository repository) {
 		this.repository = repository;
 	}
-	public String getUserNameById(int id) {
+	public String getUsername(int id) {
 		Optional<User> user =  repository.findById(id);
 		
 		if(user.isPresent()) {
