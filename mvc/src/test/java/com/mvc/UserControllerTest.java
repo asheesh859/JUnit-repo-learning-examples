@@ -31,4 +31,11 @@ import com.mvc.service.UserService;
 		verify(mockService , times(1)).getUsername(1);
 	}
 	
+	@Test
+	void testGetUserName_NotFound() {
+		when(mockService.getUsername(2)).thenReturn("Unknown User");
+		assertEquals("Unknown user" , controller.getUserName(2));
+		verify(mockService , times(1)).getUsername(2);
+	}
+	
 }
