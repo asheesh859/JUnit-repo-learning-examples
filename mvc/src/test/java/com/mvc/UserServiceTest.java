@@ -34,4 +34,12 @@ public class UserServiceTest {
 		
 	}
 	
+	@Test
+	void testGetUserName_NotFound() {
+		when(repository.findById(2)).thenReturn(Optional.empty());
+		String name = service.getUsername(2);
+		assertEquals("unknown User" , name);
+		verify(repository , times(1)).findById(2);
+	}
+	
 }
