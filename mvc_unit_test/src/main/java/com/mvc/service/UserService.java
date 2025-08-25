@@ -2,6 +2,8 @@ package com.mvc.service;
 
 import com.mvc.repository.UserRepository;
 import com.mvc.entity.User;
+
+import java.util.List;
 import java.util.Optional;
 
 public class UserService {
@@ -31,6 +33,11 @@ public class UserService {
 			return true;
 		}
 		return false;
+	}
+	
+	public List<User> findAllUser(){
+		return userRepository.findAll();
+		
 	}
 	
 	
