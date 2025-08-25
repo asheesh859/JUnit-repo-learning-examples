@@ -1,5 +1,5 @@
 package com.mvc.controller;
 
-public class UserController {
-
+public class UserController{
+	
 }
