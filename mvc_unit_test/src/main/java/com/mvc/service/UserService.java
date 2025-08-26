@@ -17,7 +17,7 @@ public class UserService {
 	public String getUserName(int id){
 		return userRepository.findById(id)
 				.map(user -> user.getName())
-				.orElse("User not found");
+				.orElse("Unknown User");
 	}
 
 	public User createUser(User user){
