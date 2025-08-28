@@ -1,9 +1,12 @@
 package com.mvc.controller;
 
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,4 +38,17 @@ public class UserController{
 		User created = userService.createUser(user);
 		return ResponseEntity.status(201).body(created);
 	}
+	
+	@PutMapping("{/id}")
+	public ResponseEntity<User> update(@PathVariable int id , @RequestBody User user){
+		
+		Optional<User> result = userService.updateUser(user , id);
+		
+		return result.map(ResponseEntity::ok)
+					.orElseGet(()-> ResponseEntity.notFound().build());
+		
+		
+		
+	} 
+	
 }
