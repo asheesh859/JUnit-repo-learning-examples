@@ -3,6 +3,7 @@ package com.mvc.controller;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,5 +51,11 @@ public class UserController{
 		
 		
 	} 
+	@DeleteMapping("{/id}")
+	public ResponseEntity<?> delete(@PathVariable int id) {
+		boolean result =userService.deleteUser(id);
+		
+		return result ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+	}
 	
 }
