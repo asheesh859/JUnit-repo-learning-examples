@@ -1,5 +1,6 @@
 package com.mvc.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -55,7 +56,17 @@ public class UserController{
 	public ResponseEntity<?> delete(@PathVariable int id) {
 		boolean result =userService.deleteUser(id);
 		return result ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
-		
+
+	}
+
+	@GetMapping
+	public ResponseEntity<List<User>> getAllUsers(){
+		List<User> user = userService.findAllUser();
+		if(user.isEmpty()){
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(user);
+
 	}
 	
 }
