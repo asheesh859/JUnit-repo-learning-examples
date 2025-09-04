@@ -28,8 +28,9 @@ class UserServiceTest {
     void getUserName_NotFound() {
         when(userRepository.findById(1)).thenReturn(Optional.of(new User(1, "John Doe")));
         String result = userService.getUserName(1);
-        
         assert("John Doe" .equals(result));
         verify(userRepository , times(1)).findById(1);
     }
+
+    
 }
