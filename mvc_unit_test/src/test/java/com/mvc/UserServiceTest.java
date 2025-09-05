@@ -1,6 +1,8 @@
 package com.mvc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,10 +47,23 @@ class UserServiceTest {
     	
     }
 
+    @Test
     void createUser_saves() {
     	
     	User input = new User(10,"Bob");
-    	when(userRepository.save())
+    	when(userRepository.save(any(User.class))).thenReturn(input);
+    	User saved = userService.createUser(input);
+    	assertEquals("Bob" , saved.getName());	
+    	verify(userRepository).save(input);
+    }
+    
+    @Test
+    void upateUser_notFound() {
+    	when(userRepository.findById(6)).thenReturn(Optional.empty());
+    	var result = userService.updateUser(6, new User(6,"X"));
+    	assertEquals(false,result.isPresent());
+    	verify(userRepository).findById(6);
+    	verify(userRepository , never()).save(any());
     	
     }
     

@@ -23,7 +23,7 @@ public class UserService {
 	public User createUser(User user){
 		return userRepository.save(user);
 	}
-	public Optional<User> updateUser(User user, int id){
+	public Optional<User> updateUser( int id,User user){
 		return userRepository.findById(id).map(existing -> userRepository.save(new User(id ,user.getName())));
 	}
 
