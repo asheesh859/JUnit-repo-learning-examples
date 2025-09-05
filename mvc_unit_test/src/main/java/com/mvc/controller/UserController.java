@@ -64,6 +64,7 @@ public class UserController{
 		List<User> user = userService.findAllUser();
 		if(user.isEmpty()){
 			return ResponseEntity.noContent().build();
+			
 		}
 		return ResponseEntity.ok(user);
 

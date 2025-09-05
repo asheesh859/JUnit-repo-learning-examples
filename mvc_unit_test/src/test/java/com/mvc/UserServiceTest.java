@@ -1,5 +1,6 @@
 package com.mvc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -24,13 +25,31 @@ class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
+    
     @Test
-    void getUserName_NotFound() {
+    void getUserName_Found() {
         when(userRepository.findById(1)).thenReturn(Optional.of(new User(1, "John Doe")));
         String result = userService.getUserName(1);
         assert("John Doe" .equals(result));
         verify(userRepository , times(1)).findById(1);
     }
+    
+   
+    @Test
+    void getUserName_NotFound() {
+    	when(userRepository.findById(99)).thenReturn(Optional.empty());
+    	String result = userService.getUserName(99);
+    	assertEquals("unknown user" , result);
+    	
+    	verify(userRepository , times(1)).findById(99);	
+    	
+    }
 
+    void createUser_saves() {
+    	
+    	User input = new User(10,"Bob");
+    	when(userRepository.save())
+    	
+    }
     
 }
